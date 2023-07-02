@@ -622,7 +622,6 @@ const platform: Platform = {
     prTitle,
     prBody: body,
     state,
-    targetBranch,
   }: UpdatePrConfig): Promise<void> {
     let title = prTitle;
     if ((await getPrList()).find((pr) => pr.number === number)?.isDraft) {
@@ -631,7 +630,6 @@ const platform: Platform = {
 
     await helper.updatePR(config.repository, number, {
       title,
-      base: targetBranch,
       ...(body && { body }),
       ...(state && { state }),
     });
